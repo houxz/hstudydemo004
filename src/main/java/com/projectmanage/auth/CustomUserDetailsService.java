@@ -25,11 +25,10 @@ public class CustomUserDetailsService implements UserDetailsService{
 	
 	@Autowired
 	private SessionService sessionService;
-	
-	@Override
-	public CustomUserDetails loadUserByUsername(String username){
+
+	public CustomUserDetails   loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-		System.out.println("=======CustomUserDetailsService:loadUserByUsername()=======================");
+System.out.println("=======CustomUserDetailsService:loadUserByUsername()=======================");
 		
 		if( sessionService.isDuplicateLogin(username) ) {
 			throw new SessionAuthenticationException(new String());
@@ -58,4 +57,6 @@ public class CustomUserDetailsService implements UserDetailsService{
 		
 		return userDetails;
 	}
+	
+	
 }
