@@ -1,9 +1,11 @@
 package com.projectmanage.auth;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.session.SessionAuthenticationException;
 import org.springframework.stereotype.Component;
 
+import com.projectmanage.common.RoleType;
 import com.projectmanage.pojo.AuthorityModel;
 import com.projectmanage.service.EmapgoAccountService;
 import com.projectmanage.service.SessionService;
@@ -46,8 +49,9 @@ System.out.println("=======CustomUserDetailsService:loadUserByUsername()========
 		
 		List<GrantedAuthority> auths = new ArrayList<GrantedAuthority>();
 		
-		Map<String, Object> auth;
-		//auths.add( new SimpleGrantedAuthority(MapUtils auth);
+		Map<String, Object> auth = new HashMap<String,Object>();
+		auth.put("rolename", RoleType.ROLE_POIVIDEOEDIT);//byhxz bug
+		auths.add( new SimpleGrantedAuthority(MapUtils.getString(auth, "rolename")));
 		
 		Integer userid = authority.getId();
 		

@@ -26,12 +26,16 @@ public class AuthMonitorInterceptor extends HandlerInterceptorAdapter{
 				System.out.println(ga.getAuthority());
 
 				auths.add(RoleType.valueOf(ga.getAuthority()));
+				
+				return true;//有权限
 			}
 		} else {
 			System.out.println("======AuthMonitorInterceptor::preHandle()==null=1=");
 		}
 		
+		
+		
 		request.getRequestDispatcher("/exception/accessDenied.web").forward(request, response);
-		return false;
+		return false;//无权限访问页面
 	}
 }

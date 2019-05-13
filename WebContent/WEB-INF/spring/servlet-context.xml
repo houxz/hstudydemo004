@@ -22,8 +22,8 @@
 		http://www.springframework.org/schema/task
 		http://www.springframework.org/schema/task/spring-task.xsd">
 	
-	
-	  
+	<!-- root-context.xml 引用的扫描包不能扫描test1ctrl ， 这里加了就可以了 不知道原因  -->
+	 <context:component-scan base-package="com.projectmanage" /> 
  
     <!-- 注册HandlerMapper、HandlerAdapter两个映射类 <mvc:annotation-driven />会注册两个映射类，负责将请求映射到类和方法中 -->
     <mvc:annotation-driven />
@@ -53,7 +53,7 @@
 			<mvc:exclude-mapping path="/selfcheck.web"/>
 			<mvc:exclude-mapping path="/head.web"/>
 			<mvc:exclude-mapping path="/foot.web"/>
-			<mvc:exclude-mapping path="/test2.web"/> 
+			<mvc:exclude-mapping path="/test1.web"/> 
 			<beans:bean class="com.projectmanage.auth.AuthMonitorInterceptor"></beans:bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
